@@ -1,6 +1,7 @@
 package org.jtxt.layer;
 
-import javax.sound.midi.Soundbank;
+import static org.jtxt.util.Constants.READ_FILE_NAME;
+import static org.jtxt.util.Constants.WRITE_FILE_NAME;
 import java.io.IOException;
 import java.util.Map;
 
@@ -13,53 +14,6 @@ public class ExecuteCommand {
         this.bufferPrims = bufferPrims;
     }
 
-    /*public void execute (Commands command) throws IOException {
-        switch (command) {
-            case q:
-                System.exit(0);
-                break;
-            case a:
-                int i = bufferPrims.addLines();
-                bufferPrims.printAllLines();
-                //}
-                break;
-            case p:
-                bufferPrims.printAllLines();
-                break;
-            case c:
-                System.out.println(bufferPrims.getCurrentLine());
-                break;
-            case w:
-                break;
-            default:
-                System.out.println("Unknown command ?");
-
-        }
-    }*/
-    /*public void execute (char command) throws IOException {
-        switch (command) {
-            case 'q':
-                System.exit(0);
-                break;
-            case 'a':
-                int i = bufferPrims.addLines();
-                //bufferPrims.printAllLines();
-                //}
-                break;
-            case 'p':
-                bufferPrims.printAllLines(command);
-                break;
-            case 'c':
-                System.out.println(bufferPrims.getCurrentLine());
-                break;
-            case 'w':
-                break;
-            default:
-                System.out.println("Unknown command ?");
-
-        }
-    }*/
-
     public void execute(Command command) throws IOException {
         if (command.isParametersFound()) {
 
@@ -71,8 +25,6 @@ public class ExecuteCommand {
                 break;
             case 'a':
                 int i = bufferPrims.addLines();
-                //bufferPrims.printAllLines();
-                //}
                 break;
             case 'p':
                 bufferPrims.printAllLines(command);
@@ -81,11 +33,10 @@ public class ExecuteCommand {
                 System.out.println(bufferPrims.getCurrentLine());
                 break;
             case 'w':
-                bufferPrims.writeToFile(paramMap.get("WriteFileName"));
+                bufferPrims.writeToFile(paramMap.get(WRITE_FILE_NAME));
                 break;
             case 'r':
-                //bufferPrims.readIntoBuffer(paramMap.get("ReadFileName"));
-                bufferPrims.readIntoBufferArray(paramMap.get("ReadFileName"));
+                bufferPrims.readIntoBufferArray(paramMap.get(READ_FILE_NAME));
                 System.out.println("File Read into buffer, Buffer is ready to be appended !!!! Fire away !!");
                 break;
             default:
